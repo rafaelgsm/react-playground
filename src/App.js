@@ -29,7 +29,7 @@ class App extends Component {
           <Route path='/contact' component={Contact} />
 
           {/* Route parameter: */}
-          <Route path='/:post_id' component={Post} />
+          <Route exact path='/:post_id' component={Post} />
 
         </div>
 

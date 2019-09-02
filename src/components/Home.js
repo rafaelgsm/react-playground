@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios'   //for http requests
 
+import { Link } from 'react-router-dom'
+
 /**
  * 
  * Home Component will now request and display a list of posts.
@@ -34,10 +36,12 @@ class Home extends Component {
                 return (
                     <div className="post card" key={post.id}>
                         <div className="card-content">
-                            <span className="card-title">{post.title}</span>
+                            <Link to={'/' + post.id}>
+                                <span className="card-title">{post.title}</span>
+                            </Link>
                             <p>{post.body}</p>
                         </div>
-                    </div>
+                    </div >
                 )
             })
         ) : (
