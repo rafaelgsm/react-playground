@@ -46,8 +46,6 @@ class Home extends Component {
     }
 }
 
-const x = 1
-
 {/* We will create a function to take the state and map it to props */ }
 const mapStateToProps = (state) => {
 
