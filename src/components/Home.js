@@ -1,38 +1,21 @@
 import React, { Component } from 'react';
-import axios from 'axios'   //for http requests
 
 import { Link } from 'react-router-dom'
 
 import Sphere from '../sphere.jpg'
 
+import { connect } from 'react-redux' //connect function to glue REDUX to our component.
+
 /**
  * 
- * Home Component will now request and display a list of posts.
- * 
- * Home must be a container component so we can have access to its lifecycle methods.
+ * Home now will access data from the REDUX store.
  */
 class Home extends Component {
 
-    state = {
-        posts: []
-    }
-
-    //Do the request when the component is created:
-    componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(res => {
-
-                //Sets the state to have the first 10 posts:
-                this.setState({
-                    posts: res.data.slice(0, 10)
-                })
-
-            })
-    }
-
     render() {
 
-        const { posts } = this.state
+        //Now we are using props passed from redux store:        
+        const { posts } = this.props
         const postList = posts.length ? (
             posts.map(post => {
                 return (
@@ -63,4 +46,16 @@ class Home extends Component {
     }
 }
 
-export default Home
+const x = 1
+
+{/* We will create a function to take the state and map it to props */ }
+const mapStateToProps = (state) => {
+
+    //Returns the different properties that you want to add to the props:
+    return {
+        posts: state.posts
+    }
+}
+
+{/* So it knows what data it want to grab from redux, and pass it to props */}
+export default connect(mapStateToProps)(Home)   
